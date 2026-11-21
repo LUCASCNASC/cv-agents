@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{FULL_NAME}} - Currículo</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 20mm 20mm 20mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+      line-height: 1.38;
+      font-size: 9.5pt;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a {
+      color: #0b57d0;
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 14px;
+    }
+
+    .name {
+      font-size: 13pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 5px;
+      letter-spacing: 0.3px;
+    }
+
+    .contact-line {
+      font-size: 9.5pt;
+      color: #000000;
+      line-height: 1.45;
+    }
+
+    /* Headings */
+    h2.section-heading {
+      font-size: 10.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000000;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 9.5pt;
+      color: #000000;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* Technical Skills */
+    .skills-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 4px;
+    }
+
+    .skills-list li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 3px;
+      line-height: 1.38;
+    }
+
+    .skills-list strong {
+      font-weight: bold;
+    }
+
+    /* Experience */
+    .experience-block {
+      margin-top: 8px;
+    }
+
+    .job-entry {
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .job-title-date {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 2px;
+    }
+
+    .job-company-loc {
+      font-size: 9.5pt;
+      font-style: italic;
+      color: #000000;
+      margin-bottom: 5px;
+    }
+
+    .job-bullets {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 3px;
+    }
+
+    .job-bullets li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 4px;
+      line-height: 1.38;
+      text-align: left;
+    }
+
+    /* Education & Languages */
+    .edu-lang-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 4px;
+    }
+
+    .edu-lang-list li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 3px;
+      line-height: 1.38;
+    }
+
+    /* Print optimizations */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="name">{{FULL_NAME}}</div>
+      <div class="contact-line">
+        {{LOCATION}} | {{PHONE}} | <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+      </div>
+      <div class="contact-line">
+        LinkedIn: <a href="{{LINKEDIN_URL}}" target="_blank">{{LINKEDIN_LABEL}}</a> | GitHub: <a href="{{GITHUB_URL}}" target="_blank">{{GITHUB_LABEL}}</a>
+      </div>
+    </header>
+
+    <!-- Resumo Profissional -->
+    <section>
+      <h2 class="section-heading">RESUMO PROFISSIONAL</h2>
+      <p class="summary-text">{{PROFESSIONAL_SUMMARY}}</p>
+    </section>
+
+    <!-- Competências Técnicas -->
+    <section>
+      <h2 class="section-heading">COMPETÊNCIAS TÉCNICAS</h2>
+      <ul class="skills-list">
+        {{SKILLS_ITEMS}}
+      </ul>
+    </section>
+
+    <!-- Experiência Profissional -->
+    <section class="experience-block">
+      <h2 class="section-heading">EXPERIÊNCIA PROFISSIONAL</h2>
+      {{EXPERIENCE_ITEMS}}
+    </section>
+
+    <!-- Formação & Idiomas -->
+    <section>
+      <h2 class="section-heading">FORMAÇÃO ACADÊMICA & IDIOMAS</h2>
+      <ul class="edu-lang-list">
+        {{EDUCATION_AND_LANGUAGES_ITEMS}}
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

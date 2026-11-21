@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUCAS CAMARGO - Currículo QA Engineer Sênior</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 20mm 20mm 20mm 20mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+      line-height: 1.38;
+      font-size: 9.5pt;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a {
+      color: #0b57d0;
+      text-decoration: underline;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 14px;
+    }
+
+    .name {
+      font-size: 13pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 5px;
+      letter-spacing: 0.3px;
+    }
+
+    .contact-line {
+      font-size: 9.5pt;
+      color: #000000;
+      line-height: 1.45;
+    }
+
+    /* Headings */
+    h2.section-heading {
+      font-size: 10.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000000;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 9.5pt;
+      color: #000000;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* Technical Skills */
+    .skills-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 4px;
+    }
+
+    .skills-list li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 3px;
+      line-height: 1.38;
+    }
+
+    .skills-list strong {
+      font-weight: bold;
+    }
+
+    /* Experience */
+    .experience-block {
+      margin-top: 8px;
+    }
+
+    .job-entry {
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .job-title-date {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 2px;
+    }
+
+    .job-company-loc {
+      font-size: 9.5pt;
+      font-style: italic;
+      color: #000000;
+      margin-bottom: 5px;
+    }
+
+    .job-bullets {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 3px;
+    }
+
+    .job-bullets li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 4px;
+      line-height: 1.38;
+      text-align: left;
+    }
+
+    /* Education & Languages */
+    .edu-lang-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-top: 4px;
+    }
+
+    .edu-lang-list li {
+      font-size: 9.5pt;
+      color: #000000;
+      margin-bottom: 3px;
+      line-height: 1.38;
+    }
+
+    /* Print optimizations */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="name">LUCAS CAMARGO</div>
+      <div class="contact-line">
+        Maringá, PR, Brasil | +55 (44) 98833-5414 | <a href="mailto:nascimentocamargolucas@gmail.com">nascimentocamargolucas@gmail.com</a>
+      </div>
+      <div class="contact-line">
+        LinkedIn: <a href="https://linkedin.com/in/lucascamargo-qa" target="_blank">linkedin.com/in/lucascamargo-qa</a> | GitHub: <a href="https://github.com/LUCASCNASC" target="_blank">github.com/LUCASCNASC</a>
+      </div>
+    </header>
+
+    <!-- Resumo Profissional -->
+    <section>
+      <h2 class="section-heading">RESUMO PROFISSIONAL</h2>
+      <p class="summary-text">
+        QA Engineer Sênior com mais de 4 anos de experiência prática no ciclo de vida de desenvolvimento de software (SDLC), especializado em testes de microsserviços, APIs REST de alta criticidade e automação E2E com Cypress e Playwright. Ampla vivência no setor financeiro e fintechs (crédito consignado CLT e mobile banking de alta segurança), tendo liderado a homologação técnica de APIs governamentais que posicionou a empresa no Top 5 mais rápidas do país a homologar, gerando um aumento de 24x nas vendas da plataforma. Pioneiro no uso de IA Generativa e protocolos MCP para auditar requisitos e automatizar suítes de teste em esteiras de CI/CD.
+      </p>
+    </section>
+
+    <!-- Competências Técnicas -->
+    <section>
+      <h2 class="section-heading">COMPETÊNCIAS TÉCNICAS</h2>
+      <ul class="skills-list">
+        <li><strong>Testes de API & Contrato:</strong> Postman, Bruno, Swagger / OpenAPI, validação de microsserviços, integrações governamentais e de parceiros.</li>
+        <li><strong>Automação Web & Mobile:</strong> Cypress (JS/TS), Playwright (TypeScript com Page Object Model - POM), Appium, Robot Framework.</li>
+        <li><strong>DevOps, CI/CD & Carga:</strong> GitLab CI/CD, GitHub Actions, Azure DevOps, Bitbucket Pipelines, Docker, k6 (testes de performance e carga), Argo CD.</li>
+        <li><strong>Bancos de Dados & Cloud:</strong> PostgreSQL (queries avançadas de consistência financeira), SQL Server, AWS (Lambdas).</li>
+        <li><strong>Observabilidade & Métricas:</strong> Datadog, Grafana (monitoramento de erros, saúde de aplicações e logs de produção).</li>
+        <li><strong>IA Aplicada ao QA:</strong> Claude Code, GitHub Copilot, Model Context Protocol (MCP Atlassian, MCP GitLab, MCP Playwright), geração de casos BDD e dados sintéticos.</li>
+      </ul>
+    </section>
+
+    <!-- Experiência Profissional -->
+    <section class="experience-block">
+      <h2 class="section-heading">EXPERIÊNCIA PROFISSIONAL</h2>
+
+      <div class="job-entry">
+        <div class="job-title-date">QA Engineer | Ago 2025 – Presente</div>
+        <div class="job-company-loc">Gazin Tech | Maringá, PR, Brasil</div>
+        <ul class="job-bullets">
+          <li>Liderou a frente de garantia de qualidade para aplicativo de Mobile Banking de alta segurança e transacionalidade crítica, assegurando integridade financeira, usabilidade e zero vazamento de defeitos.</li>
+          <li>Arquitetou e mantém framework automatizado com Playwright e TypeScript baseado em Page Object Model (POM), integrado a esteiras GitLab CI/CD.</li>
+          <li>Engenharia de testes de integração com APIs REST externas de parceiros via Postman e Swagger, antecipando gargalos de payload e contratos.</li>
+          <li>Pioneiro no uso massivo de agentes de IA e Model Context Protocol (MCP) integrados ao GitLab e Jira, auditando commits diretamente contra critérios de aceite e automatizando a geração de testes BDD e relatórios de risco.</li>
+          <li>Monitoramento contínuo de logs, resiliência e saúde de microsserviços em produção via Datadog e Grafana, com validações avançadas em PostgreSQL e SQL Server.</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-title-date">QA Analyst / Test Analyst | Fev 2025 – Jul 2025</div>
+        <div class="job-company-loc">Finnet / Gooroo Crédito | São Paulo, SP (Remoto)</div>
+        <ul class="job-bullets">
+          <li>Liderança única na homologação de APIs governamentais para a nova regulação de crédito consignado CLT, superando cenários de documentação escassa e ambientes externos altamente instáveis.</li>
+          <li>Posicionou a fintech no Top 5 mais rápidas do Brasil a concluir a integração (competindo com grandes bancos como Banco do Brasil, Itaú e Caixa), gerando um aumento de 24x no volume de vendas da plataforma.</li>
+          <li>Desenvolveu e sustentou suíte E2E automatizada com Cypress (JS/TS) integrada a pipelines de Bitbucket e Azure DevOps.</li>
+          <li>Automatizou testes de API com Postman e Bruno e executou testes de performance e carga com k6 para certificar estabilidade sob alta concorrência.</li>
+          <li>Validou consistência e integridade transacional em arquiteturas serverless AWS Lambda com banco de dados PostgreSQL.</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-title-date">QA Analyst | Jan 2024 – Fev 2025</div>
+        <div class="job-company-loc">Sabium Sistemas | Maringá, PR, Brasil</div>
+        <ul class="job-bullets">
+          <li>Projetou e implementou o primeiro framework de testes automatizados E2E da empresa com Cypress (JS/TS) e arquitetura Page Object Model (POM), integrado ao GitHub Actions.</li>
+          <li>Reduziu o tempo de execução da suíte de regressão em 50%, aplicando priorização orientada a risco nos fluxos de venda e autenticação.</li>
+          <li>Automatizou smoke tests de APIs REST com Postman e Swagger e conduziu auditorias complexas em PostgreSQL para validação de regras fiscais e contábeis.</li>
+          <li>Provisionou e gerenciou ambientes de teste isolados utilizando Docker.</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-title-date">Test Analyst | Dez 2021 – Dez 2023</div>
+        <div class="job-company-loc">NCS Sistemas Inteligentes | Maringá, PR, Brasil</div>
+        <ul class="job-bullets">
+          <li>Atuou como único QA na migração de ERP legado desktop para plataforma Web/Mobile, participando desde o levantamento de regras de negócio em pair programming até a entrega final elogiada pelo cliente.</li>
+          <li>Implementou as primeiras suítes em Cypress da empresa com integração ao GitHub Actions, além de testes de payload e API via Postman e validação de banco com PostgreSQL.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Formação Acadêmica & Idiomas -->
+    <section>
+      <h2 class="section-heading">FORMAÇÃO ACADÊMICA & IDIOMAS</h2>
+      <ul class="edu-lang-list">
+        <li><strong>Bacharelado em Engenharia de Software</strong> | Unifatecie (Previsão de Formação: 2027)</li>
+        <li><strong>Certificações:</strong> Google (Inteligência Artificial e Produtividade), Anthropic (Claude 101 & Claude Platform 101), Alura (Plano de Testes e Gestão de Bugs; Organização de Equipes Ágeis).</li>
+        <li><strong>Idiomas:</strong> Português (Nativo), Inglês (Avançado - C1 / Proficiência Profissional Completa).</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

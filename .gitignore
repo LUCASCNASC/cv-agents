@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches de navegadores e PDF temporários
+.playwright/
+*.tmp
+*.temp
+
+# Arquivos de ambiente e segredos
+.env
+*.env
+*.local
+credentials.json
+token.json
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Candidaturas reais (opcional: comente se quiser versionar seu histórico no GitHub)
+# applications/*
+# !applications/2026-11_global-insurtech_senior-qa/

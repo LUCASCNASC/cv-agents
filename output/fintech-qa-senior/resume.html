@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas Camargo - QA Engineer Sênior</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm 13mm 10mm 13mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.4;
+      font-size: 9.2pt;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a {
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid #0f766e;
+      padding-bottom: 6px;
+      margin-bottom: 9px;
+    }
+
+    .name {
+      font-size: 19pt;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin-bottom: 1px;
+    }
+
+    .title {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #0f766e;
+      margin-bottom: 5px;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 8.3pt;
+      color: #475569;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .contact-item span.bullet {
+      color: #94a3b8;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 9px;
+    }
+
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 11px;
+      background-color: #0f766e;
+      border-radius: 2px;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 8.9pt;
+      color: #334155;
+      text-align: justify;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 8.6pt;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .skill-category {
+      font-weight: 700;
+      color: #1e293b;
+      min-width: 145px;
+    }
+
+    .skill-values {
+      color: #475569;
+      flex: 1;
+    }
+
+    /* Experience */
+    .experience-item {
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .exp-role-company {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .exp-company {
+      font-weight: 600;
+      color: #0f766e;
+    }
+
+    .exp-date-loc {
+      font-size: 8.2pt;
+      font-weight: 500;
+      color: #64748b;
+      text-align: right;
+    }
+
+    .exp-bullets {
+      list-style-type: disc;
+      padding-left: 15px;
+      margin-top: 2px;
+    }
+
+    .exp-bullets li {
+      font-size: 8.6pt;
+      color: #334155;
+      margin-bottom: 2px;
+      text-align: justify;
+    }
+
+    .exp-bullets strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* Education & Certs */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .edu-item, .cert-item {
+      margin-bottom: 4px;
+      font-size: 8.5pt;
+    }
+
+    .edu-degree {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .edu-school {
+      color: #0f766e;
+      font-weight: 500;
+    }
+
+    .edu-year {
+      font-size: 8pt;
+      color: #64748b;
+    }
+
+    .cert-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .cert-list li {
+      font-size: 8.4pt;
+      color: #334155;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .cert-list li::before {
+      content: "•";
+      color: #0f766e;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1 class="name">Lucas Camargo</h1>
+      <div class="title">QA Engineer Sênior | Automação de APIs & E2E | Fintechs & Meios de Pagamento | CI/CD | IA</div>
+      <div class="contact-bar">
+        <span class="contact-item">📍 Maringá, PR, Brasil</span>
+        <span class="contact-item"><span class="bullet">•</span> 📱 +55 (44) 98833-5414</span>
+        <span class="contact-item"><span class="bullet">•</span> ✉️ <a href="mailto:nascimentocamargolucas@gmail.com">nascimentocamargolucas@gmail.com</a></span>
+        <span class="contact-item"><span class="bullet">•</span> 🔗 <a href="https://www.linkedin.com/in/lucascamargo-qa" target="_blank">linkedin.com/in/lucascamargo-qa</a></span>
+        <span class="contact-item"><span class="bullet">•</span> 💻 <a href="https://github.com/LUCASCNASC" target="_blank">github.com/LUCASCNASC</a></span>
+      </div>
+    </header>
+
+    <!-- Resumo Profissional -->
+    <section>
+      <h2 class="section-title">Resumo Profissional</h2>
+      <p class="summary-text">
+        QA Engineer com mais de 4 anos de experiência no ciclo completo de desenvolvimento de software (SDLC), especializado em testes de microsserviços, APIs REST de alta volumetria e automação ponta a ponta (E2E) com Cypress e Playwright. Ampla vivência no setor financeiro e fintechs (crédito consignado CLT e mobile banking de alta segurança), tendo liderado a homologação de APIs governamentais que posicionou a operação no Top 5 mais rápidas do país, gerando um aumento de 24x nas vendas. Pioneiro na integração de IA Generativa e protocolos MCP para antecipar defeitos, otimizar esteiras de CI/CD e acelerar o time-to-market.
+      </p>
+    </section>
+
+    <!-- Competências & Tecnologias -->
+    <section>
+      <h2 class="section-title">Competências & Tecnologias</h2>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-category">Testes de API & Contrato:</span>
+          <span class="skill-values">Postman, Bruno, Swagger / OpenAPI, validação de microsserviços, integrações governamentais e de terceiros.</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Automação Web & Mobile:</span>
+          <span class="skill-values">Cypress (JS/TS), Playwright (TypeScript) com Page Object Model (POM), Appium, Robot Framework.</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">DevOps, CI/CD & Cloud:</span>
+          <span class="skill-values">GitLab CI/CD, GitHub Actions, Azure DevOps, Bitbucket Pipelines, Docker, AWS (Lambdas), Argo CD.</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Bancos de Dados & Carga:</span>
+          <span class="skill-values">PostgreSQL (queries avançadas de consistência e integridade financeira), SQL Server, k6 (testes de performance e carga).</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">Observabilidade & Métricas:</span>
+          <span class="skill-values">Datadog, Grafana (monitoramento de erros, saúde de aplicações e logs de produção).</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-category">IA Aplicada ao QA:</span>
+          <span class="skill-values">Claude Code, GitHub Copilot, Model Context Protocol (MCP Atlassian, MCP GitLab, MCP Playwright), agentes de IA para BDD e dados sintéticos.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiência Profissional -->
+    <section>
+      <h2 class="section-title">Experiência Profissional</h2>
+      <div class="experience-list">
+        
+        <!-- Gazin Tech -->
+        <div class="experience-item">
+          <div class="exp-header">
+            <span class="exp-role-company">QA Engineer · <span class="exp-company">Gazin Tech</span></span>
+            <span class="exp-date-loc">Ago 2025 – Presente · Maringá, PR</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Liderou a frente de garantia de qualidade para aplicativo de <strong>Mobile Banking</strong> de alta segurança e transacionalidade crítica, assegurando integridade financeira e experiência fluida ao usuário.</li>
+            <li>Arquiteta e mantém framework automatizado com <strong>Playwright e TypeScript</strong> baseado em Page Object Model (POM), integrado a esteiras <strong>GitLab CI/CD</strong>.</li>
+            <li>Engenharia de testes de integração com APIs REST externas de parceiros via <strong>Postman e Swagger</strong>, antecipando gargalos de payload e contratos.</li>
+            <li>Pioneiro no uso massivo de agentes de IA e <strong>Model Context Protocol (MCP)</strong> integrados ao GitLab e Jira, auditando commits diretamente contra critérios de aceite e automatizando a geração de testes BDD e relatórios de risco.</li>
+            <li>Monitoramento contínuo de logs, resiliência e saúde de microsserviços em produção via <strong>Datadog e Grafana</strong>, com validações avançadas em <strong>PostgreSQL e SQL Server</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Finnet / Gooroo Crédito -->
+        <div class="experience-item">
+          <div class="exp-header">
+            <span class="exp-role-company">QA Engineer / Test Analyst · <span class="exp-company">Finnet / Gooroo Crédito</span></span>
+            <span class="exp-date-loc">Fev 2025 – Jul 2025 · São Paulo, SP (Remoto)</span>
+          </div>
+          <ul class="exp-bullets">
+            <li><strong>Liderança única na homologação de APIs governamentais</strong> para a nova regulação de crédito consignado CLT, superando cenários de documentação escassa e ambientes externos altamente instáveis.</li>
+            <li>Posicionou a fintech no <strong>Top 5 mais rápidas do Brasil a concluir a integração</strong> (competindo com grandes bancos como Banco do Brasil, Itaú e Caixa), gerando um <strong>aumento de 24x no volume de vendas</strong> da plataforma.</li>
+            <li>Desenvolveu e sustentou suíte E2E automatizada com <strong>Cypress (JS/TS)</strong> integrada a pipelines de <strong>Bitbucket</strong> e <strong>Azure DevOps</strong>.</li>
+            <li>Automatizou testes de API com <strong>Postman e Bruno</strong> e executou testes de performance e carga com <strong>k6</strong> para certificar estabilidade sob alta concorrência.</li>
+            <li>Validou consistência e integridade transacional em arquiteturas serverless <strong>AWS Lambda</strong> com banco de dados <strong>PostgreSQL</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Sabium Sistemas -->
+        <div class="experience-item">
+          <div class="exp-header">
+            <span class="exp-role-company">QA Analyst · <span class="exp-company">Sabium Sistemas</span></span>
+            <span class="exp-date-loc">Jan 2024 – Fev 2025 · Maringá, PR</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Projetou e implementou o <strong>primeiro framework de testes automatizados E2E da empresa</strong> com Cypress (JS/TS) e arquitetura Page Object Model (POM), integrado ao <strong>GitHub Actions</strong>.</li>
+            <li><strong>Reduziu o tempo de execução da suíte de regressão em 50%</strong>, aplicando priorização orientada a risco nos fluxos de venda e autenticação.</li>
+            <li>Automatizou smoke tests de APIs REST com <strong>Postman e Swagger</strong> e conduziu auditorias complexas em <strong>PostgreSQL</strong> para validação de regras fiscais e contábeis.</li>
+            <li>Provisionou e gerenciou ambientes de teste isolados utilizando <strong>Docker</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- NCS Sistemas -->
+        <div class="experience-item">
+          <div class="exp-header">
+            <span class="exp-role-company">Test Analyst · <span class="exp-company">NCS Sistemas Inteligentes</span></span>
+            <span class="exp-date-loc">Dez 2021 – Dez 2023 · Maringá, PR</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Atuou como <strong>único QA na migração de ERP legado desktop para plataforma Web/Mobile</strong>, participando desde o levantamento de regras de negócio em pair programming até a entrega final elogiada pelo cliente.</li>
+            <li>Implementou as primeiras suítes em <strong>Cypress</strong> da empresa com integração ao <strong>GitHub Actions</strong>, além de testes de payload e API via <strong>Postman</strong> e validação de banco com <strong>PostgreSQL</strong>.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Formação Acadêmica & Certificações -->
+    <section class="two-col-grid">
+      <div>
+        <h2 class="section-title">Formação Acadêmica</h2>
+        <div class="edu-item">
+          <div class="edu-degree">Bacharelado em Engenharia de Software</div>
+          <div class="edu-school">Unifatecie (Centro Universitário Cidade Verde)</div>
+          <div class="edu-year">Junho 2023 – Junho 2027 (Previsão)</div>
+        </div>
+      </div>
+      <div>
+        <h2 class="section-title">Certificações & Idiomas</h2>
+        <ul class="cert-list">
+          <li><strong>Google:</strong> Inteligência Artificial e Produtividade</li>
+          <li><strong>Anthropic:</strong> Claude 101 & Claude Platform 101</li>
+          <li><strong>Alura:</strong> Quality Assurance: Plano de Testes e Gestão de Bugs</li>
+          <li><strong>Idiomas:</strong> Português (Nativo) · Inglês (Avançado - C1)</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

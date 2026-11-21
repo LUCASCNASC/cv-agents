@@ -1,0 +1,28 @@
+# Vaga: QA Engineer Sênior (Fintech / Pagamentos & Crédito)
+Empresa: Banco Digital / Fintech Inovadora
+Modelo: Remoto (Brasil)
+
+Sobre a oportunidade:
+Buscamos um(a) QA Engineer Sênior para liderar a qualidade das nossas soluções de crédito e integração com serviços financeiros e governamentais. Você atuará em squads ágeis, trabalhando próximo a desenvolvedores e arquitetos de software para garantir entregas rápidas, seguras e com alta confiabilidade.
+
+Principais Responsabilidades:
+- Definir e liderar a estratégia de testes para sistemas distribuídos e microsserviços de alto volume.
+- Desenvolver e manter frameworks de automação de testes E2E e de integração de APIs (REST).
+- Homologar e validar integrações com parceiros externos, bancos centrais e serviços governamentais.
+- Integrar suítes de testes automatizados em esteiras de CI/CD (GitHub Actions, GitLab CI ou Azure DevOps).
+- Monitorar a saúde dos serviços em produção utilizando ferramentas de observabilidade (Datadog, Grafana).
+- Implementar boas práticas de BDD e priorização de testes baseada em risco.
+- Explorar e aplicar ferramentas modernas de IA generativa para otimizar o ciclo de vida de testes.
+
+Requisitos Obrigatórios:
+- Experiência sólida em garantia de qualidade e automação de testes (Cypress ou Playwright com TypeScript/JavaScript).
+- Vivência comprovada com testes de API REST (Postman, Swagger, Bruno).
+- Experiência com bancos de dados relacionais e queries SQL avançadas (PostgreSQL).
+- Prática com esteiras de CI/CD e conteinerização (Docker).
+- Forte comunicação, autonomia e facilidade para atuar em ambientes dinâmicos de fintech/startups.
+
+Diferenciais:
+- Experiência prévia no setor financeiro, crédito, consignado ou meios de pagamento.
+- Vivência com arquiteturas em nuvem (AWS / Lambdas) e testes de performance (k6).
+- Uso prático de ferramentas de IA (GitHub Copilot, Claude, LLMs) no dia a dia de QA.
+- Experiência com arquitetura Page Object Model (POM).

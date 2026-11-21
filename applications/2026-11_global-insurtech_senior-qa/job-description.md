@@ -1,0 +1,28 @@
+# Vaga: Senior QA Engineer / QA Automation Specialist
+Empresa: Global InsurTech Solutions
+Localização: Remote (Global / US Hours)
+Plataforma: Lever / Greenhouse (Direto no site da empresa)
+
+## Descrição da Vaga
+We are seeking a Senior QA Engineer to spearhead test automation and quality engineering across our digital insurance platform. You will be instrumental in modernizing our test infrastructure, accelerating release cycles, and leveraging next-gen AI capabilities.
+
+### Key Responsibilities:
+- Architect, implement, and scale robust automated test suites using Playwright with TypeScript (Page Object Model).
+- Design and execute comprehensive API integration testing strategies against complex third-party partner services.
+- Integrate automated regression suites into modern CI/CD pipelines (GitLab CI / GitHub Actions).
+- Leverage AI-powered tooling (LLMs, custom AI agents, Model Context Protocol) to streamline test generation, commit audits, and bug tracking.
+- Lead QA strategy for high-criticality transactional applications, ensuring zero defect leakage.
+- Collaborate closely with software engineers, product managers, and agile stakeholders.
+
+### Requirements:
+- 4+ years of hands-on experience in Quality Assurance and E2E test automation.
+- Proven expertise in Playwright (preferred) or Cypress using TypeScript/JavaScript.
+- Strong proficiency in API testing (REST, Postman, Swagger) and relational databases (PostgreSQL, SQL Server).
+- Solid experience setting up and maintaining CI/CD automated test pipelines.
+- Excellent problem-solving skills, proactivity, and high autonomy.
+- Fluent/Professional English communication (written and spoken).
+
+### Nice to Have:
+- Experience in Insurance (InsurTech), Financial Services, or Mobile Banking.
+- Experience utilizing generative AI (GitHub Copilot, Claude, LLM workflows) to accelerate QA deliverables.
+- Experience with performance/load testing (k6) and cloud monitoring (Datadog).
