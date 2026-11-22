@@ -1,91 +1,82 @@
 ---
 name: new-opportunity
-description: Fluxo inteligente de candidatura completa. Aceita vagas de qualquer plataforma, contexto da empresa e perguntas de formulário. Cria pacote autônomo em applications/, adapta o currículo em PDF (padrão CV_English_Lucas_Camargo_QA.pdf), responde screening questions e indexa no questions-bank.md.
+description: Passo 2 do fluxo. Adapta o currículo com base na vaga informada e no contexto estratégico gerado pelo /company-report (salvo em reports/<empresa>/company-report.md), compilando o currículo final em PDF e o kit completo de candidatura diretamente dentro de reports/<empresa>/.
 ---
 
-# Fluxo de Candidatura Completa: New Opportunity (`/new-opportunity`)
+# Fluxo de Candidatura: New Opportunity (`/new-opportunity`)
 
-Este comando inicia o agente de candidaturas completas. O sistema opera de forma **100% universal e agnóstica ao candidato**, alimentando-se exclusivamente do arquivo [`career-knowledge.md`](../../../career-knowledge.md).
-
----
-
-## 🎯 Arquitetura de Dados & Armazenamento
-
-Para cada oportunidade processada, o agente cria automaticamente uma pasta dedicada:
-`applications/<YYYY-MM>_<empresa>_<cargo>/`
-
-Dentro dela, armazena o **Pacote Autônomo da Candidatura**:
-1. `job-description.md` — Texto bruto da vaga, preservando o histórico integral.
-2. `company-context.md` — Contexto da empresa (produtos, nicho, notas informadas pelo usuário ou coletadas de forma opcional/best-effort).
-3. `screening-questions.md` — Perguntas do formulário de inscrição respondidas de forma personalizada no modelo STAR.
-4. `resume.html` e `Curriculo_<Nome>.pdf` — Currículo oficial A4 fiel a `templates/CV_English_Lucas_Camargo_QA.pdf`.
-5. `ats-audit.md` — Auditoria de score ATS e gap analysis.
-6. `pitch-linkedin.md` — Mensagem de abordagem personalizada para o recrutador.
-
-Além disso, o agente atualiza automaticamente os dois índices centrais:
-- [`applications-tracker.md`](../../../applications-tracker.md) — Registra a candidatura na tabela geral.
-- [`questions-bank.md`](../../../questions-bank.md) — Indexa novas respostas para aprendizado contínuo.
+Este comando é o **Passo 2** do fluxo estratégico de candidaturas. Ele consome o contexto de inteligência gerado no **Passo 1 (`/company-report`)**, cruza com os dados factuais do candidato ([`career-knowledge.md`](../../../career-knowledge.md)) e gera um kit de candidatura cirúrgico dentro de **`reports/<empresa>/`**.
 
 ---
 
-## 🚀 Fases de Execução Passo a Passo
+## 🚀 Como Acionar
 
-### Fase 1: Recepção Universal de Dados
-O usuário pode enviar em uma única mensagem ou em etapas:
-- **Texto da Vaga:** De qualquer plataforma (LinkedIn, Gupy, Greenhouse, Lever, Workday, etc.).
-- **Contexto da Empresa (Opcional):** Notas sobre produtos, cultura, notícias ou links.
-- **Perguntas de Inscrição (Opcional):** Perguntas abertas do formulário (ex: *"Conte sobre um desafio técnico"*, *"Por que você quer trabalhar aqui?"*).
+No chat, envie o comando com a descrição da vaga (ou apontando para o arquivo):
 
-Se o usuário enviar apenas `/new-opportunity`, o agente solicita os dados disponíveis.
-
----
-
-### Fase 2: Enriquecimento & Criação da Pasta
-1. Cria a pasta `applications/<YYYY-MM>_<empresa>_<cargo>/`.
-2. Salva o texto bruto em `job-description.md`.
-3. Salva os detalhes institucionais em `company-context.md` (se o usuário informou notas ou se o agente encontrou dados públicos via pesquisa web rápida não bloqueante).
-
----
-
-### Fase 3: Consulta Factual & Resposta às Perguntas de Inscrição
-1. Consulta `career-knowledge.md` e `questions-bank.md`.
-2. Se houver perguntas de formulário informadas:
-   - Responde cada questão conectando o histórico factual do candidato às dores e ao negócio da empresa.
-   - Salva em `screening-questions.md`.
-   - Adiciona a melhor versão no `questions-bank.md` para reaproveitamento futuro.
-
----
-
-### Fase 4: Adaptação Semântica do Currículo
-- Título alinhado à vaga.
-- Resumo cirúrgico conectando as maiores conquistas do candidato à dor da empresa.
-- Reordenação de `TECHNICAL SKILLS` destacando as ferramentas obrigatórias.
-- Bullets de experiência priorizados por relevância e métricas quantificadas (STAR).
-- Fuso horário (`UTC-3 · Overlap with US EST/PST`) para posições internacionais.
-
----
-
-### Fase 5: Compilação do PDF
-Injeta no template correspondente (`resume-template-pt.html` ou `resume-template-en.html`) e executa:
-```powershell
-python scripts/generate_pdf.py "applications/<pasta>/resume.html" "applications/<pasta>/Curriculo_<Nome>.pdf"
+```text
+/new-opportunity [cole a descrição da vaga aqui]
+```
+ou informando a empresa e a vaga:
+```text
+/new-opportunity empresa: "NomeEmpresa" [descrição da vaga]
 ```
 
 ---
 
-### Fase 6: Auditoria ATS, Pitch & Rastreamento
-1. Executa `scripts/ats_scorer.py` e salva em `ats-audit.md`.
-2. Gera `pitch-linkedin.md` com mensagem curta para conectar com recrutadores no LinkedIn.
-3. Adiciona uma nova linha com status e links em `applications-tracker.md`.
+## 🧠 Protocolo de Utilização do Contexto do `company-report`
+
+Quando o `/new-opportunity` é executado, o agente deve seguir **obrigatoriamente** as seguintes etapas de contextualização:
+
+### Etapa 1: Localização & Carregamento do `company-report.md`
+1. O agente identifica o nome da empresa na descrição da vaga ou parâmetro e normaliza o nome da pasta (ex: `stone`, `cora`, `nubank`).
+2. Verifica se o arquivo `reports/<empresa>/company-report.md` já existe.
+   - **Se existir (Cenário Ideal):** Lê o arquivo integralmente e carrega as seguintes variáveis-chave:
+     - *Proposta de Valor & Produtos Core*
+     - *Momento Atual & Desafios de Negócio (expansão, escala, confiabilidade)*
+     - *Como a empresa trabalha com IA e Engenharia*
+     - *Cultura, Valores e Liderança*
+     - *Perguntas Estratégicas geradas para a Entrevista*
+   - **Se NÃO existir:** Notifica o usuário: *"Não encontrei o relatório prévio da empresa. Recomendo rodar `/company-report <URL>` primeiro para gerar a inteligência estratégica da empresa. Deseja pausar para rodar o relatório ou prosseguir apenas com a descrição da vaga?"*
 
 ---
 
-### Fase 7: Devolução Imediata no Chat
-O agente apresenta no chat:
-- 🎯 **Score ATS e Análise de Gaps**.
-- ❓ **Resumo das Respostas de Formulário** (se houver perguntas).
-- 💬 **Pitch para LinkedIn**.
-- 📄 **Links Clicáveis:**
-  - PDF: `[Curriculo_<Nome>.pdf](file:///c:/Projects/cv-agents/applications/<pasta>/Curriculo_<Nome>.pdf)`
-  - Pasta da Candidatura: `[Ver Arquivos da Vaga](file:///c:/Projects/cv-agents/applications/<pasta>/)`
-  - Rastreador Geral: `[applications-tracker.md](file:///c:/Projects/cv-agents/applications-tracker.md)`
+### Etapa 2: A Matriz de Cruzamento Estratégico (Onde o Contexto é Injetado)
+
+O contexto do `company-report` é injetado diretamente em **5 áreas fundamentais** da candidatura:
+
+| Seção do Entregável | Como o `company-report` é Utilizado | Regra de Zero Alucinação |
+|---|---|---|
+| **1. Resumo Profissional (`Professional Summary`)** | O resumo do currículo é calibrado para citar a indústria da empresa (Fintech, Healthtech, SaaS, etc.) e como a especialidade do candidato resolve os desafios de escala, qualidade ou IA identificados no relatório da empresa. | Usa **somente** títulos, anos de experiência e competências reais comprovadas em `career-knowledge.md`. |
+| **2. Priorização de Bullets de Experiência** | Os bullets de realizações são reordenados para dar destaque àqueles que resolvem as dores e espelham a stack citada no `company-report` (ex: se a empresa foca em microsserviços, APIs e automação com Playwright/Python, os bullets dessas conquistas aparecem no topo de cada experiência). | **Nunca** altera números, métricas ou cria projetos que não existam em `career-knowledge.md`. |
+| **3. Pitch de Abordagem para LinkedIn (`pitch-linkedin.md`)** | O pitch menciona explicitamente o momento atual ou produtos destacados no `company-report` (ex: *"Acompanho a evolução da [Empresa] em [Produto X] e o foco de vocês em [Inovação/Escala]..."*), gerando conexão imediata com o Tech Recruiter ou Hiring Manager. | Conecta o momento real da empresa com a experiência real do candidato. |
+| **4. Respostas de Formulário (`screening-questions.md`)** | Questões clássicas como *"Por que você quer trabalhar na [Empresa]?"* ou *"Como você se conecta com nossos valores?"* são respondidas cruzando a missão/valores catalogados no relatório com a trajetória real do candidato. | Respostas estruturadas no método STAR, salvas também em `questions-bank.md`. |
+| **5. Dossiê de Alinhamento para Entrevista (`interview-prep.md`)** | Cria uma folha rápida conectando as perguntas sugeridas no `company-report` com os 5 Desafios STAR do candidato de `career-knowledge.md`. | Fornece ao candidato os melhores exemplos prontos para cada potencial pergunta. |
+
+---
+
+## 📦 Artefatos Gerados em `reports/<empresa>/`
+
+Ao término da execução, todos os entregáveis do `/new-opportunity` ficam centralizados na pasta da empresa:
+
+```text
+reports/<empresa>/
+├── company-report.html         # Dossiê institucional visual (Passo 1)
+├── company-report.md           # Dossiê estruturado em markdown (Passo 1)
+├── company-report.pdf          # PDF do dossiê para leitura rápida (Passo 1)
+│
+├── Curriculo_<Nome>_<Vaga>.pdf # ✅ Currículo oficial A4 pronto para envio (Passo 2)
+├── resume.html                 # Código-fonte semântico do currículo
+├── job-description.md          # Descrição integral da vaga guardada
+├── pitch-linkedin.md           # Mensagem cirúrgica para o recrutador
+├── screening-questions.md       # Respostas inteligentes a perguntas da vaga
+├── interview-prep.md           # Cruzamento de cases STAR com as dores da empresa
+└── ats-audit.md                # Relatório de pontuação ATS e palavras-chave
+```
+
+---
+
+## 📋 Atualização Automática de Status
+
+Após a compilação do PDF:
+1. Registra a vaga no [`applications-tracker.md`](../../../applications-tracker.md) com status `Pronto para Envio` e link para o PDF gerado.
+2. Salva novas respostas formuladas em [`questions-bank.md`](../../../questions-bank.md).

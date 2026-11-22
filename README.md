@@ -1,65 +1,81 @@
-# 🎯 CV-Agents — Sistema Inteligente de Adaptação de Currículos com IA & ATS
+# 🎯 CV-Agents — Sistema de Inteligência de Empresas & Adaptação de Currículos com Memória Permanente
 
-Agente autônomo, agnóstico e universal para processar oportunidades de qualquer plataforma de emprego, gerenciar pacotes autônomos de candidatura, adaptar currículos com base factual e gerar PDFs oficiais de alta fidelidade.
-
----
-
-## 🏛️ Arquitetura de Dados: Pacotes Autônomos em `applications/`
-
-Toda oportunidade enviada ao comando `/new-opportunity` é armazenada em uma pasta própria e isolada:
-
-```text
-c:\Projects\cv-agents\applications\2026-11_empresa_cargo\
-├── job-description.md       # 📥 Texto bruto da vaga (preserva o histórico original)
-├── company-context.md       # 🏢 Contexto da empresa (produtos, nicho, notas do usuário)
-├── screening-questions.md   # ❓ Perguntas do formulário respondidas no modelo STAR
-├── resume.html              # 🌐 Código semântico do currículo adaptado
-├── Curriculo_<Nome>.pdf     # 📄 PDF final A4 pronto para envio (padrão oficial)
-├── ats-audit.md             # 📊 Auditoria ATS e análise de gaps
-└── pitch-linkedin.md        # 💬 Mensagem de abordagem personalizada para o recrutador
-```
-
-### Inteligência Cumulativa nos Índices Centrais:
-- **[`career-knowledge.md`](career-knowledge.md):** Fonte única da verdade da carreira (zero alucinação).
-- **[`applications-tracker.md`](applications-tracker.md):** Painel geral de status de todas as candidaturas.
-- **[`questions-bank.md`](questions-bank.md):** Banco de perguntas frequentes de processos seletivos e respostas reutilizáveis, garantindo aprendizado contínuo do agente.
+Ambiente de automação com **contexto e memória de longo prazo** para pesquisar empresas, reter aprendizados de entrevistas, gerenciar pacotes autônomos de candidatura e adaptar currículos com inteligência artificial e alta fidelidade em PDF.
 
 ---
 
-## ⚡ Como Acionar: `/new-opportunity`
+## 🧠 Arquitetura de Memória de Longo Prazo
 
-```text
-/new-opportunity
-```
-
-### Formas de envio no Chat:
-1. **Comando simples:** Digite `/new-opportunity` e o agente solicitará a vaga, contexto e perguntas.
-2. **Envio completo:** Digite `/new-opportunity` e envie junto:
-   - A descrição da vaga.
-   - O contexto da empresa ou notas extras (opcional).
-   - As perguntas do formulário de inscrição (opcional).
-
-O agente processará tudo de forma contínua e devolverá o kit completo em `applications/` com o PDF compilado!
-
----
-
-## 📁 Estrutura Completa do Projeto
+O `cv-agents` foi projetado para **nunca perder o contexto**, mesmo após semanas, meses, reinicializações ou compactação de sessões:
 
 ```text
 c:\Projects\cv-agents\
-├── career-knowledge.md                 # 🧠 ÚNICA FONTE DA VERDADE (dados 100% verificados)
-├── applications-tracker.md             # 📋 Rastreador geral de candidaturas
-├── questions-bank.md                   # ❓ Banco central de perguntas de formulários/entrevistas
-├── README.md                           # Documentação deste projeto
-├── docs/
-│   └── ai-ats-screening-guide.md       # Guia de funcionamento de robôs de ATS e IA
-├── templates/
-│   ├── CV_English_Lucas_Camargo_QA.pdf # PDF de referência visual padrão oficial
-│   ├── resume-template-en.html         # Template HTML oficial com placeholders dinâmicos (Inglês)
-│   └── resume-template-pt.html         # Template HTML oficial com placeholders dinâmicos (Português)
-├── scripts/
-│   ├── generate_pdf.py                 # Script CLI de renderização HTML -> PDF via Chromium
-│   └── ats_scorer.py                   # Avaliador de score ATS e compatibilidade com IA
-├── jobs/                               # Onde você pode salvar vagas em arquivo .txt
-└── applications/                       # 📦 Onde ficam os pacotes autônomos de cada vaga
+├── AGENTS.md                           # 🏛️ REGRAS & MEMÓRIA MESTRE (Injetado automaticamente pelo Antigravity)
+├── career-knowledge.md                 # 🧠 SSOT da carreira do candidato (fatos reais e métricas)
+├── applications-tracker.md             # 📋 Painel mestre de candidaturas e histórico de status
+├── questions-bank.md                   # ❓ Banco central de perguntas de entrevistas e formulários
+├── memory/                             # 💾 MEMÓRIA VIVA & EVOLUTIVA DE LONGO PRAZO
+│   ├── interview-learnings.md          # Aprendizados, perguntas reais de entrevistas e feedbacks
+│   ├── salary-and-negotiations.md      # Histórico de faixas salariais, moedas (BRL/USD) e ofertas
+│   └── target-preferences.md           # Preferências de carreira, stacks alvo e critérios de descarte
+├── templates/                          # 🎨 Templates oficiais (Currículo A4 e Dossiê da Empresa)
+├── scripts/                            # ⚙️ Scripts Playwright e geradores de PDF
+└── reports/                            # 📦 Histórico autônomo de cada empresa abordada
 ```
+
+> **Como o Antigravity mantém a memória:** O arquivo [`AGENTS.md`](AGENTS.md) na raiz do projeto é a instrução mandatória e permanente do ecossistema. Qualquer agente ou subagente que abrir este projeto absorve imediatamente a identidade do sistema, a localização de todas as memórias e as regras de zero alucinação.
+
+---
+
+## 🔄 O Fluxo de Trabalho em 2 Passos
+
+```mermaid
+flowchart LR
+    subgraph Passo 1: Inteligência da Empresa
+        A["1. /company-report <URL>"] --> B["Playwright MCP"]
+        B --> C["Extrai: Produtos, IA, História, Líderes"]
+        C --> D["Cria pasta: reports/<empresa>/"]
+        D --> E["Salva: company-report.html e .pdf"]
+    end
+
+    subgraph Passo 2: Currículo Personalizado
+        F["2. /new-opportunity <Vaga>"] --> G["Lê reports/<empresa>/company-report.md"]
+        G --> H["Consulta career-knowledge.md + Memória"]
+        H --> I["Gera Curriculo_<Nome>.pdf em reports/<empresa>/"]
+        I --> J["Salva pitch, perguntas e atualiza tracker"]
+    end
+
+    E -.-> G
+```
+
+---
+
+### 🟢 Passo 1: `/company-report` (Dossiê da Empresa Pré-Entrevista)
+
+```text
+/company-report https://site-da-empresa.com
+```
+
+- Acessa o site institucional via **Playwright MCP**.
+- Estrutura proposta de valor, produtos, IA, líderes e perguntas inteligentes para a entrevista.
+- Cria a pasta dedicada em `reports/<empresa>/` com `company-report.html`, `company-report.md` e `company-report.pdf`.
+
+---
+
+### 🔵 Passo 2: `/new-opportunity` (Currículo & Kit Completo com Contexto Estratégico)
+
+```text
+/new-opportunity [cole a descrição da vaga aqui]
+```
+
+- **Consome o Dossiê:** Lê automaticamente `reports/<empresa>/company-report.md` (produtos, IA, momento da empresa e cultura).
+- **Calibração Cirúrgica:** Alinha o Resumo Profissional e a ordem dos bullets de impacto às dores e tecnologias da empresa, utilizando **exclusivamente fatos reais** de [`career-knowledge.md`](career-knowledge.md) (zero alucinação).
+- **Pitch de Abordagem & Perguntas de Triagem:** Gera abordagem personalizada para o LinkedIn citando o momento real da empresa e responde perguntas de formulário no modelo STAR.
+- **Compilação Oficial:** Gera o currículo em PDF no padrão oficial A4 ([`templates/CV_English_Lucas_Camargo_QA.pdf`](templates/CV_English_Lucas_Camargo_QA.pdf)).
+- **Armazenamento:** Salva todos os entregáveis (`Curriculo.pdf`, `pitch-linkedin.md`, `screening-questions.md`, `interview-prep.md`, etc.) dentro de `reports/<empresa>/` e atualiza o [`applications-tracker.md`](applications-tracker.md).
+
+---
+
+## 🔒 Privacidade e Segurança (.gitignore)
+
+A pasta `reports/` e arquivos sensíveis estão no [`.gitignore`](.gitignore). Você pode versionar e publicar este projeto no GitHub com total tranquilidade, mantendo suas candidaturas e notas privadas em sigilo.

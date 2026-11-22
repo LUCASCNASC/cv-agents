@@ -26,6 +26,6 @@ desktop.ini
 *.swp
 *.swo
 
-# Candidaturas reais (opcional: comente se quiser versionar seu histórico no GitHub)
-# applications/*
-# !applications/2026-11_global-insurtech_senior-qa/
+# Pasta de relatórios e candidaturas geradas (privacidade de processos seletivos)
+reports/
+reports/*
