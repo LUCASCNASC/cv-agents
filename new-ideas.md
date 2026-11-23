@@ -64,3 +64,10 @@
 - [ ] **Gerador de Mensagens de Follow-up & Cold Mail:** Templates automatizados de mensagens de acompanhamento após 7, 14 e 21 dias da aplicação ou entrevista.
 - [ ] **Extensão / Script de Auto-Fill para Gupy / Workday:** Auxiliar no preenchimento de formulários longos utilizando as respostas armazenadas no `questions-bank.md`.
 - [ ] **Dashboard Local / CLI Interativo:** Script em Python simples (ex: via `rich` ou `typer`) para listar candidaturas abertas e status de processos diretamente no terminal.
+
+
+- melhorar a geração de currículo com base nos padrões de análise de currúculo feita por IAs. Geralmente essa primeira etapa, primeiro filtro, é feito por IA, onde eles excluem candidatos sem análise humana, com base no que a vaga pede. Precisamos entender mais a lógica dessas IAs. Pra isso, pensei em utilizar o NotebookGemini, onde ele vai buscar fontes confiáveis sobre o assunto.
+
+Definição de regras:
+- quando temos mais de uma vaga da mesma empresa que vamos aplicar, utilizar o mesmo relatório gerado da companhia, mas currículos diferentes, caso as descrições das vagas sejam diferentes, pois alguamas empresas podem abrir mais de uma vaga igual.
+- quando aplicamos para uma empresa e um pouco depois elas abrem uma outra vaga, já temos o relatório dela gerado, precisamos definir por quando tempo esse relatório permanece válido e a partir de quanto tempo temos que gerar um novo. Talvez seja um boa inserir a data de geração do relatório dentro do próriio, para termos controle.
