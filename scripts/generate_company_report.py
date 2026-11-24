@@ -30,7 +30,10 @@ def generate_report(url, company_name=None, sector=None):
     company_folder = os.path.join(reports_root, clean_name)
     os.makedirs(company_folder, exist_ok=True)
 
-    today_str = datetime.date.today().strftime("%d/%m/%Y")
+    today = datetime.date.today()
+    valid_until_date = today + datetime.timedelta(days=90)
+    today_str = today.strftime("%d/%m/%Y")
+    valid_until_str = valid_until_date.strftime("%d/%m/%Y")
     inferred_sector = sector or "Tecnologia / Serviços Digitais"
 
     about_text = data.get("meta_description") or (data["headings"][0] if data.get("headings") else f"{name} é uma organização inovadora em seu setor de atuação.")
@@ -65,6 +68,8 @@ def generate_report(url, company_name=None, sector=None):
     html_content = html_content.replace("{{COMPANY_URL}}", data.get("url", url))
     html_content = html_content.replace("{{COMPANY_URL_LABEL}}", urlparse(data.get("url", url)).netloc)
     html_content = html_content.replace("{{REPORT_DATE}}", today_str)
+    html_content = html_content.replace("{{VALID_UNTIL}}", valid_until_str)
+    html_content = html_content.replace("{{TTL_DAYS}}", "90")
     html_content = html_content.replace("{{INDUSTRY_SECTOR}}", inferred_sector)
     html_content = html_content.replace("{{FOUNDATION_YEAR}}", "Consolidada no mercado")
     html_content = html_content.replace("{{EMPLOYEE_COUNT}}", "Em expansão")
@@ -84,11 +89,19 @@ def generate_report(url, company_name=None, sector=None):
     with open(report_html_path, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    # Gravar Markdown do Report (para leitura rápida)
+    # Gravar Markdown do Report com Metadados Frontmatter (para controle de TTL)
     report_md_path = os.path.join(company_folder, "company-report.md")
     with open(report_md_path, "w", encoding="utf-8") as f:
+        f.write(f"---\n")
+        f.write(f'company: "{name}"\n')
+        f.write(f'website: "{url}"\n')
+        f.write(f'generated_at: "{today.isoformat()}"\n')
+        f.write(f'valid_until: "{valid_until_date.isoformat()}"\n')
+        f.write(f'ttl_days: 90\n')
+        f.write(f'sector: "{inferred_sector}"\n')
+        f.write(f"---\n\n")
         f.write(f"# Dossiê Estratégico: {name}\n\n")
-        f.write(f"- **Website:** {url}\n- **Data de Análise:** {today_str}\n- **Setor:** {inferred_sector}\n\n")
+        f.write(f"- **Website:** {url}\n- **Data de Análise:** {today_str}\n- **Validade do Dossiê:** Até {valid_until_str} (Ciclo de 90 dias)\n- **Setor:** {inferred_sector}\n\n")
         f.write(f"## 1. Visão Geral\n{about_text}\n\n")
         f.write(f"## 2. Produtos & Soluções\n" + "\n".join([f"- {p}" for p in products]) + "\n\n")
         f.write(f"## 3. Tecnologia & IA\n{ai_overview}\n\n")
@@ -103,13 +116,78 @@ def generate_report(url, company_name=None, sector=None):
         "folder": company_folder,
         "html": report_html_path,
         "md": report_md_path,
-        "pdf": report_pdf_path
+        "pdf": report_pdf_path,
+        "generated_at": today.isoformat(),
+        "valid_until": valid_until_date.isoformat()
+    }
+
+def check_report_freshness(company_dir_or_md):
+    """
+    Verifica a idade e o status de frescor de um company-report.md existente.
+    Retorna dicionário com status ('fresh', 'warning', 'expired'), idade em dias e mensagem.
+    """
+    if os.path.isdir(company_dir_or_md):
+        md_path = os.path.join(company_dir_or_md, "company-report.md")
+    else:
+        md_path = company_dir_or_md
+
+    if not os.path.isfile(md_path):
+        return {
+            "exists": False,
+            "status": "not_found",
+            "age_days": None,
+            "message": "Relatório não encontrado."
+        }
+
+    with open(md_path, "r", encoding="utf-8", errors="ignore") as f:
+        content = f.read()
+
+    # Busca data no frontmatter ou usa mtime do arquivo
+    match = re.search(r'generated_at:\s*["\']?(\d{4}-\d{2}-\d{2})["\']?', content)
+    if match:
+        gen_date = datetime.date.fromisoformat(match.group(1))
+    else:
+        # Fallback para data de modificação do arquivo
+        mtime = os.path.getmtime(md_path)
+        gen_date = datetime.date.fromtimestamp(mtime)
+
+    today = datetime.date.today()
+    age_days = (today - gen_date).days
+
+    if age_days <= 60:
+        status = "fresh"
+        msg = f"Relatório válido e recente ({age_days} dias desde a geração). Pronto para uso."
+    elif age_days <= 90:
+        status = "warning"
+        msg = f"Relatório próximo da expiração ({age_days} dias). Válido, mas recomenda-se checar se houve novidades na empresa."
+    else:
+        status = "expired"
+        msg = f"Relatório expirado ({age_days} dias > 90 dias de ciclo). Recomenda-se rodar /company-report para atualizar."
+
+    return {
+        "exists": True,
+        "status": status,
+        "age_days": age_days,
+        "generated_at": gen_date.isoformat(),
+        "valid_until": (gen_date + datetime.timedelta(days=90)).isoformat(),
+        "message": msg
     }
 
 def main():
     if len(sys.argv) < 2:
         print("Uso: python generate_company_report.py <URL> [Nome_Empresa] [Setor]")
+        print("Ou:  python generate_company_report.py --check <reports/empresa/>")
         sys.exit(1)
+
+    if sys.argv[1] == "--check":
+        if len(sys.argv) < 3:
+            print("Informe o caminho da pasta ou markdown do relatório.")
+            sys.exit(1)
+        res = check_report_freshness(sys.argv[2])
+        print(f"Status: {res['status'].upper()}")
+        print(f"Idade: {res['age_days']} dias")
+        print(f"Mensagem: {res['message']}")
+        return
 
     url = sys.argv[1]
     name = sys.argv[2] if len(sys.argv) > 2 else None

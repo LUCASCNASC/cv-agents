@@ -75,3 +75,28 @@ Ao adaptar um currículo pelo comando `/new-opportunity`, o agente aplica as seg
 3. **Harmonização Exata de Palavras-Chave:** Todas as ferramentas obrigatórias da vaga devem constar na seção `TECHNICAL SKILLS` e serem repetidas dentro de pelo menos um bullet point de experiência prática.
 4. **Métricas Explícitas:** Manter sempre as métricas reais registradas (ex: 24x vendas, 50% redução de tempo, Top 5 nacional).
 5. **Contexto Institucional:** Se a empresa valoriza alta escalabilidade ou segurança, esses valores devem permear a redação das experiências.
+6. **Passagem nos Gatekeepers Booleanos:** Anos de experiência e modelo de trabalho remoto explicitados claramente nas primeiras linhas para evitar descarte automático.
+7. **Anti-Keyword Stuffing:** Palavras-chave nunca devem ser inseridas soltas ou repetidas artificialmente; devem sempre figurar em frases estruturadas (Ação + Ferramenta + Impacto).
+
+---
+
+## 5. Pesquisa Contínua com NotebookLM (NotebookGemini)
+
+Para manter o sistema sempre calibrado com as mais recentes atualizações dos algoritmos de IA de recrutamento (Ashby AI, Eightfold, Workday, Phenom, Gupy), utilizamos o **Google NotebookLM** como motor de síntese e inteligência de fontes confiáveis.
+
+### 📚 Fontes Primárias Recomendadas para o NotebookLM:
+1. **Whitepapers & Documentações Técnicas de ATS:**
+   - Ashby AI Hiring Guides & Release Notes.
+   - Eightfold AI Talent Intelligence Platform documentation.
+   - Workday AI Talent Optimization Whitepapers.
+   - Phenom Cognitive Search & Intelligent Matching documentation.
+2. **Estudos de Caso de Recrutamento Técnico & Engenharia Reversa:**
+   - Artigos e análises de Tech Recruiters e Engenheiros sobre prompts de triagem LLM.
+   - Pesquisas sobre o impacto da fórmula *Google X-Y-Z* em classificadores automáticos.
+
+### 🔍 Prompts Operacionais no NotebookLM:
+- *"Quais critérios objetivos e penalizações os LLMs utilizam para descartar currículos técnicos na primeira triagem?"*
+- *"Como balancear a densidade de palavras-chave técnicas sem ser penalizado por keyword stuffing em modelos semânticos baseados em embeddings?"*
+- *"Quais estruturas sintáticas geram a maior pontuação de relevância em parsers de última geração?"*
+
+As conclusões apuradas no NotebookLM devem ser periodicamente consolidadas neste guia e refletidas nos prompts dos agentes `/new-opportunity` e na auditoria do script [`scripts/ats_scorer.py`](../scripts/ats_scorer.py).

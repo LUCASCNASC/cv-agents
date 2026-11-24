@@ -47,12 +47,28 @@ O agente e as ferramentas de Playwright extraem e estruturam:
 
 ## 📁 Estrutura de Saída (`reports/<empresa>/`)
 
-O agente cria e organiza tudo na pasta dedicada:
+O agente cria e organiza o dossiê institucional na raiz da pasta da empresa:
 ```text
 reports/<empresa>/
-├── company-report.html  # Relatório padronizado em HTML
-├── company-report.md    # Dossiê em Markdown para leitura rápida
+├── company-report.html  # Relatório padronizado em HTML (com data e validade visual)
+├── company-report.md    # Dossiê em Markdown com metadados Frontmatter (TTL de 90 dias)
 └── company-report.pdf   # PDF oficial A4 pronto para impressão/revisão
 ```
 
-Essa mesma pasta será utilizada no **Passo 2** pelo comando `/new-opportunity` para salvar o currículo adaptado!
+### ⏳ Ciclo de Validade & Metadados (TTL de 90 Dias)
+O arquivo `company-report.md` é gerado com metadados estruturados para controle de obsolescência:
+```yaml
+---
+company: "Nome da Empresa"
+website: "https://site-da-empresa.com"
+generated_at: "2026-11-23"
+valid_until: "2027-02-21"
+ttl_days: 90
+sector: "Fintech / Serviços Digitais"
+---
+```
+- **0 a 60 dias:** Relatório considerado **recente/fresco**; pode ser reutilizado diretamente por qualquer vaga da mesma empresa.
+- **61 a 90 dias:** Relatório **válido com aviso**; recomenda-se verificar novidades pontuais.
+- **Acima de 90 dias:** Relatório **expirado**; o comando `/new-opportunity` alertará para regerar o dossiê.
+
+Essa mesma pasta será utilizada no **Passo 2** pelo comando `/new-opportunity`, que criará subpastas isoladas em `reports/<empresa>/jobs/<vaga>/` para permitir múltiplas candidaturas na mesma empresa sem sobrescrever arquivos!

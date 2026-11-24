@@ -35,17 +35,20 @@ Sempre que uma nova mensagem for recebida, o agente deve consultar estes arquivo
 3. **Economia de Tokens:** Relatórios de empresa utilizam o template estruturado [`templates/company-report-template.html`](templates/company-report-template.html), evitando reescrever CSS/HTML no chat.
 4. **Resiliência e Celeridade:** Consultas web e LinkedIn são bônus (*best-effort*). Se a página for inacessível ou privada, o agente avança imediatamente com os dados fornecidos na vaga.
 5. **Aprendizado Contínuo:** Sempre que uma nova resposta brilhante for elaborada para uma candidatura, o agente deve catalogá-la em `questions-bank.md` para benefício de candidaturas futuras.
+6. **Múltiplas Vagas da Mesma Empresa:** O dossiê institucional é compartilhado na raiz de `reports/<empresa>/`, enquanto cada vaga fica isolada em `reports/<empresa>/jobs/<vaga>/`. Vagas com descrições 90%+ idênticas devem ser apontadas para evitar duplicatas.
+7. **Ciclo de Vida do Dossiê (TTL 90 Dias):** Todo `company-report.md` contém metadados de validade. Relatórios com mais de 90 dias devem ser sinalizados para atualização via `/company-report`.
+8. **Padrão de Triagem por IA:** Todo currículo gerado deve satisfazer os motores de triagem de IA (Hard-filters explícitos, co-ocorrência semântica sem keyword stuffing e fórmula de impacto STAR com métricas reais).
 
 ---
 
 ## 🔄 4. Os Dois Fluxos Oficiais Integrados & Sinergia de Contexto
 
 ```text
-Passo 1: /company-report <URL> ───► Gera dossiê e cria reports/<empresa>/company-report.md
+Passo 1: /company-report <URL> ───► Gera dossiê e cria reports/<empresa>/company-report.md (TTL 90d)
                                              │
                                              ▼ (Injeção de Contexto Estratégico)
-Passo 2: /new-opportunity <Vaga> ──► Absorve o company-report.md + career-knowledge.md
-                                     └──► Gera currículo em PDF + kit dentro de reports/<empresa>/
+Passo 2: /new-opportunity <Vaga> ──► Checa TTL + absorve company-report.md + career-knowledge.md
+                                     └──► Gera currículo em PDF + kit dentro de reports/<empresa>/jobs/<vaga>/
 ```
 
 ### 🎯 Como o contexto do `company-report` alimenta o `new-opportunity`:

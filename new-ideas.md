@@ -59,15 +59,20 @@
 
 ---
 
+### 6. 🧠 Triagem Avançada por IA, Múltiplas Vagas & Gestão de TTL (CONCLUÍDO)
+- [x] **Ciclo de Validade do Dossiê Institucional (TTL 90 Dias):** Metadados Frontmatter (`generated_at`, `valid_until`, `ttl_days: 90`) e visual no HTML/PDF implementados em [`scripts/generate_company_report.py`](scripts/generate_company_report.py) e [`templates/company-report-template.html`](templates/company-report-template.html).
+- [x] **Função de Checagem de Frescor:** Criada rotina `check_report_freshness()` e suporte via CLI (`--check`) para validar se o relatório é recente (<60d), atenção (61-90d) ou expirado (>90d).
+- [x] **Topologia de Múltiplas Vagas da Mesma Empresa:** Nível institucional compartilhado na raiz de `reports/<empresa>/` e aplicações isoladas em subpastas `reports/<empresa>/jobs/<slug-vaga>/`.
+- [x] **Detecção de Duplicidade de Vagas:** Regra documentada no `/new-opportunity` para comparar novas descrições com vagas anteriores da mesma empresa e alertar duplicatas (90%+ idênticas).
+- [x] **Pesquisa Contínua com NotebookLM & Padrões Anti-Descarte de IA:** Documentado no [`docs/ai-ats-screening-guide.md`](docs/ai-ats-screening-guide.md) protocolo de pesquisa no NotebookLM para captar atualizações de LLMs/ATS (Hard gatekeepers, semântica contextual, fórmula X-Y-Z e anti-keyword stuffing).
+- [x] **Memória Permanente Atualizada:** Regras formalizadas no [`AGENTS.md`](AGENTS.md) e na skill [`.agents/skills/new-opportunity/SKILL.md`](.agents/skills/new-opportunity/SKILL.md).
+
+---
+
 ## 🔮 Próximas Ideias & Melhorias Futuras (Backlog Aberto)
 - [ ] **Simulador de Entrevista (Mock Interviewer):** Modo interativo onde o agente assume a persona do Tech Recruiter ou Engineering Manager da empresa-alvo e faz perguntas técnicas e comportamentais baseadas no `company-report.md`.
 - [ ] **Gerador de Mensagens de Follow-up & Cold Mail:** Templates automatizados de mensagens de acompanhamento após 7, 14 e 21 dias da aplicação ou entrevista.
 - [ ] **Extensão / Script de Auto-Fill para Gupy / Workday:** Auxiliar no preenchimento de formulários longos utilizando as respostas armazenadas no `questions-bank.md`.
 - [ ] **Dashboard Local / CLI Interativo:** Script em Python simples (ex: via `rich` ou `typer`) para listar candidaturas abertas e status de processos diretamente no terminal.
 
-
-- melhorar a geração de currículo com base nos padrões de análise de currúculo feita por IAs. Geralmente essa primeira etapa, primeiro filtro, é feito por IA, onde eles excluem candidatos sem análise humana, com base no que a vaga pede. Precisamos entender mais a lógica dessas IAs. Pra isso, pensei em utilizar o NotebookGemini, onde ele vai buscar fontes confiáveis sobre o assunto.
-
-Definição de regras:
-- quando temos mais de uma vaga da mesma empresa que vamos aplicar, utilizar o mesmo relatório gerado da companhia, mas currículos diferentes, caso as descrições das vagas sejam diferentes, pois alguamas empresas podem abrir mais de uma vaga igual.
-- quando aplicamos para uma empresa e um pouco depois elas abrem uma outra vaga, já temos o relatório dela gerado, precisamos definir por quando tempo esse relatório permanece válido e a partir de quanto tempo temos que gerar um novo. Talvez seja um boa inserir a data de geração do relatório dentro do próriio, para termos controle.
+- Organizar os arquivos .md soltos no projeto.
